@@ -15,7 +15,7 @@ Develop a modern data warehouse using SQL Server to consolidate sales date,enabl
 **Scope**  Focus on the latest dataset only, historization of data is not needed (SCD 1 only).
 **Documentation** Provide clear documentation of the data model to support both business stakeholders and analytics teams.
 
-### #: Analytics and Reporting(Data Analytics)
+### Analytics and Reporting(Data Analytics)
 #### Objective 
 Develop SQL based analytics to deliver detailed insights into:
 **Customer Behaviour**
