@@ -1,3 +1,43 @@
+/*
+================================================================================
+STORED PROCEDURE: bronze.load_bronze
+================================================================================
+PURPOSE:
+    Loads raw data from CSV source files into the Bronze layer (raw data layer) 
+    of the data warehouse. This procedure truncates existing bronze tables and 
+    performs bulk inserts from both CRM and ERP source systems.
+
+PARAMETERS:
+    None - This procedure does not accept any input parameters.
+
+RETURN VALUES:
+    None - This procedure does not return any values. Progress and timing 
+    information are printed to the SQL Server message output.
+
+USAGE:
+    EXEC bronze.load_bronze;
+
+TABLES LOADED:
+    CRM Sources:
+    - bronze.crm_cust_info (Customer information)
+    - bronze.crm_prd_info (Product information)
+    - bronze.crm_sales_details (Sales details)
+
+    ERP Sources:
+    - bronze.erp_cust_az12 (Customer data)
+    - bronze.erp_loc_a101 (Location data)
+    - bronze.erp_px_cat_g1v2 (Product category data)
+
+NOTES:
+    - All source file paths are hard-coded and may require adjustment for 
+      different environments
+    - Execution time for each load is tracked and printed
+    - One record is manually inserted into bronze.erp_cust_az12 as a data fix
+    - Error handling included with TRY-CATCH block
+
+================================================================================
+*/
+
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS
 BEGIN 
     DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME,@batch_end_time DATETIME;
