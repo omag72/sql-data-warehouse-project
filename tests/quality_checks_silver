@@ -1,1 +1,33 @@
 
+--Check for nulls,negative costs normalisation
+	SELECT DISTINCT
+	sls_sales,
+	sls_quantity,
+	sls_price
+	FROM bronze.crm_sales_details
+	WHERE sls_sales != sls_quantity * sls_price 
+	OR sls_sales IS NULL OR sls_quantity IS NULL OR sls_price IS NULL 
+	OR sls_sales <= 0 OR sls_quantity<=0 OR sls_price <= 0
+
+SELECT DISTINCT
+sls_sales ,
+sls_quantity,
+sls_price  
+FROM silver.crm_sales_details 
+WHERE 
+sls_sales IS NULL OR sls_sales <= 0 OR sls_sales != sls_quantity * ABS(sls_price)
+or sls_price IS NULL OR sls_price <= 0;
+        
+SELECT * FROM silver.crm_sales_details
+
+
+--Data standardisaton and Consistency 
+select distinct subcat
+from bronze.erp_px_cat_g1v2
+
+select * from silver.erp_px_cat_g1v2
+
+
+
+
+
